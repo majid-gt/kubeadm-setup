@@ -1,6 +1,6 @@
 <div align="center">
 
-# ☸️ Kubernetes Multi-Node Cluster Setup Using kubeadm
+# Kubernetes Multi-Node Cluster Setup Using kubeadm
 ## Google Cloud Platform (GCP) VM Deployment
 
 <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/googlecloud/googlecloud-original.svg" width="110"/>
@@ -13,13 +13,13 @@
 
 <br/>
 
-### ☁ Google Cloud • ☸ Kubernetes • 🐳 containerd • 🐧 Ubuntu
+###  Google Cloud •  Kubernetes •  containerd •  Ubuntu
 
 </div>
 
 ---
 
-# 📌 Overview
+#  Overview
 
 This guide demonstrates how to deploy a **3-Node Kubernetes Cluster** using **kubeadm** on **Google Cloud Platform (GCP) Virtual Machines**.
 
@@ -33,7 +33,7 @@ The cluster consists of:
 
 ---
 
-# 🏗 Cluster Architecture
+#  Cluster Architecture
 
 | Node | Role | Internal IP |
 |-----|-----|-----|
@@ -43,7 +43,7 @@ The cluster consists of:
 
 ---
 
-# ☁ Step 1 — Create Virtual Machines
+#  Step 1 — Create Virtual Machines
 
 Create **3 Ubuntu virtual machines** in Google Cloud.
 
@@ -64,7 +64,7 @@ k8s-worker-2
 
 ---
 
-# 🔐 Step 2 — Configure Firewall Rules
+#  Step 2 — Configure Firewall Rules
 
 Kubernetes nodes must communicate internally.
 
@@ -87,7 +87,7 @@ Create a firewall rule allowing traffic between nodes.
 
 ---
 
-# 🧹 Step 3 — Clean Previous Kubernetes Installation (Optional)
+#  Step 3 — Clean Previous Kubernetes Installation (Optional)
 
 Run on **all nodes**.
 
@@ -133,7 +133,7 @@ sudo reboot
 
 ---
 
-# ⚙ Step 4 — Disable Swap
+#  Step 4 — Disable Swap
 
 Kubernetes requires swap to be disabled.
 
@@ -163,7 +163,7 @@ Swap should display:
 
 ---
 
-# ⚙ Step 5 — Load Kernel Modules
+#  Step 5 — Load Kernel Modules
 
 ### Create configuration file
 
@@ -196,7 +196,7 @@ lsmod | grep br_netfilter
 
 ---
 
-# 🌐 Step 6 — Configure Sysctl Networking
+#  Step 6 — Configure Sysctl Networking
 
 ### Create sysctl configuration
 
@@ -228,7 +228,7 @@ net.ipv4.ip_forward = 1
 
 ---
 
-# 🐳 Step 7 — Install containerd
+# Step 7 — Install containerd
 
 ### Update system
 
@@ -312,7 +312,7 @@ sudo systemctl status containerd
 
 ---
 
-# ☸ Step 9 — Install Kubernetes Components
+# Step 9 — Install Kubernetes Components
 
 ### Install dependencies
 
@@ -356,7 +356,7 @@ sudo apt-mark hold kubelet kubeadm kubectl
 
 ---
 
-# ☸ Step 10 — Initialize Kubernetes Control Plane
+# Step 10 — Initialize Kubernetes Control Plane
 
 Run only on **master node**.
 
@@ -368,7 +368,7 @@ After completion a **join command** will appear for worker nodes.
 
 ---
 
-# ⚙ Step 11 — Configure kubectl
+# Step 11 — Configure kubectl
 
 Run on **master node**.
 
@@ -398,7 +398,7 @@ NotReady
 
 ---
 
-# 🌐 Step 12 — Install Calico Network Plugin
+# Step 12 — Install Calico Network Plugin
 
 ```bash
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.2/manifests/calico.yaml
@@ -414,7 +414,7 @@ Wait until **Calico pods are Running**.
 
 ---
 
-# 👷 Step 13 — Join Worker Nodes
+# Step 13 — Join Worker Nodes
 
 Run on **worker nodes** using the command generated earlier.
 
@@ -428,7 +428,7 @@ sudo kubeadm join 10.128.0.4:6443 \
 
 ---
 
-# ✅ Step 14 — Verify Cluster
+# Step 14 — Verify Cluster
 
 Run on **master node**.
 
@@ -446,7 +446,7 @@ k8s-worker-2   Ready
 
 ---
 
-# 📊 Step 15 — Install Metrics Server
+# Step 15 — Install Metrics Server
 
 ### Apply metrics server
 
@@ -479,7 +479,7 @@ k8s-worker-2   80m          870Mi
 
 ---
 
-# 🟢 Final Cluster Status
+# Final Cluster Status
 
 | Component | Status |
 |--------|--------|
@@ -491,7 +491,7 @@ k8s-worker-2   80m          870Mi
 
 ---
 
-# 👨‍💻 Author
+# Author
 
 **Md Majid**  
 DevOps | Kubernetes | Cloud Infrastructure  
